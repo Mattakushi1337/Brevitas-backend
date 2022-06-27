@@ -9,7 +9,18 @@ export class Visit {
     name: string
 
     @Prop()
-    phone: number
+    surname: string
 
+    @Prop()
+    discription: string
+
+    @Prop()
+    mail: string
+
+    @Prop()
+    link: string
+
+    @Prop()
+    phone: number
 }
 export const VisitSchema = SchemaFactory.createForClass(Visit)

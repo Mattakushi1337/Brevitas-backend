@@ -33,7 +33,7 @@ export class VisitsController {
     @Post()
     @UseGuards(JwtGuard)
     create(@Body() createVisitDto: CreateVisitDto): Promise<Visit> {
-        return this.VisitsService.create(createVisitDto) // загружаем визитку
+        return this.VisitsService.create(createVisitDto) // создаём
     }
     
     @Delete(':id')
