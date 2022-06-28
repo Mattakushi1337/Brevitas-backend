@@ -1,4 +1,5 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { ExistingUserDto } from 'src/user/dtos/existing-user.dto';
 import { NewUserDto } from 'src/user/dtos/new-user.dto';
 import { UserDetails } from 'src/user/user-details.interface';
@@ -16,7 +17,8 @@ export class AuthController {
 
     @Post('login')
     @HttpCode(HttpStatus.OK)
-    login(@Body() user: ExistingUserDto): Promise<{token: string} | null> {
+    login(@Body() user: ExistingUserDto, @Req() request: Request): Promise<{token: string} | null> {
+        console.log(request.cookies)
         return this.authService.login(user)
     }
 }

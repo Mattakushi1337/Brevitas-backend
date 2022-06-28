@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { ExistingUserDto } from 'src/user/dtos/existing-user.dto';
@@ -18,7 +18,9 @@ export class AuthService {
         const {username, email, password} = user
         const existingUser = await this.UserService.findByEmail(email)
 
-        if (existingUser) return 'Email taken!'
+        if (existingUser) {
+            throw new HttpException('Email Taken!', HttpStatus.FORBIDDEN);
+        }
         
         const hashedPassword = await this.hashPassword(password)
 
@@ -35,11 +37,15 @@ export class AuthService {
         const user = await this.UserService.findByEmail(email)
         const doesUserExist = !!user
 
-        if (!doesUserExist) return null
+        if (!doesUserExist) {
+            throw new HttpException('Uncorrect email', HttpStatus.FORBIDDEN);
+        }
 
         const doesPasswordMath = await this.doesPasswordMath(password, user.password)
 
-        if (!doesPasswordMath) return null
+        if (!doesPasswordMath) {
+            throw new HttpException('Uncorrect password', HttpStatus.FORBIDDEN);
+        }
 
         return this.UserService._getUserDetails(user)
     }

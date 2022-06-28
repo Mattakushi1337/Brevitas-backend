@@ -4,7 +4,6 @@ import { Model } from "mongoose";
 import { CreateVisitDto } from "./dto/create-visit.dto";
 import { UpdateVisitDto } from "./dto/update-visit.dto";
 import { Visit, VisitDocument } from "./shemas/visits.schemas";
-import { VisitModule } from "./visit.module";
 
 
 @Injectable()
