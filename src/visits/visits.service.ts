@@ -8,6 +8,9 @@ import { Visit, VisitDocument } from "./shemas/visits.schemas";
 
 @Injectable()
 export class VisitsService {
+    findallwhere(): Promise<Visit[]> {
+        throw new Error('Method not implemented.');
+    }
 
 
     constructor(@InjectModel(Visit.name) private visitModel: Model<VisitDocument>) {
