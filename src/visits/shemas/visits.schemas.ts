@@ -12,7 +12,7 @@ export class Visit {
     surname: string
 
     @Prop()
-    discription: string
+    description: string
 
     @Prop()
     mail: string

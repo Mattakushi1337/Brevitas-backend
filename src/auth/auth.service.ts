@@ -15,16 +15,22 @@ export class AuthService {
     }
 
     async register(user: Readonly<NewUserDto>): Promise<UserDetails | any> {
-        const {username, email, password} = user
+        const { email, login, password} = user
         const existingUser = await this.UserService.findByEmail(email)
+        const loginUser = await this.UserService.findByLogin(login)
+
 
         if (existingUser) {
             throw new HttpException('Email Taken!', HttpStatus.FORBIDDEN);
         }
+
+        if (loginUser) {
+            throw new HttpException('Login Taken!', HttpStatus.FORBIDDEN);
+        }
         
         const hashedPassword = await this.hashPassword(password)
 
-        const newUser = await this.UserService.create(username, email, hashedPassword)
+        const newUser = await this.UserService.create(email, login, hashedPassword)
         
         return this.UserService._getUserDetails(newUser)
     }
@@ -33,12 +39,12 @@ export class AuthService {
         return bcrypt.compare(password, hashedPassword)
     }
 
-    async validateUser(email: string, password: string): Promise<UserDetails | null> {
-        const user = await this.UserService.findByEmail(email)
+    async validateUser(login: string, password: string): Promise<UserDetails | null> {
+        const user = await this.UserService.findByLogin(login)
         const doesUserExist = !!user
 
         if (!doesUserExist) {
-            throw new HttpException('Uncorrect email', HttpStatus.FORBIDDEN);
+            throw new HttpException('Uncorrect Login', HttpStatus.FORBIDDEN);
         }
 
         const doesPasswordMath = await this.doesPasswordMath(password, user.password)
@@ -50,8 +56,8 @@ export class AuthService {
         return this.UserService._getUserDetails(user)
     }
     async login(existingUser: ExistingUserDto): Promise<{token: string} | null> {
-        const {email, password} = existingUser
-        const user = await this.validateUser(email, password)
+        const {login, password} = existingUser
+        const user = await this.validateUser(login, password)
 
         if (!user) return null
 

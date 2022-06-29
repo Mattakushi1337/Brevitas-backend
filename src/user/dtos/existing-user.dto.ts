@@ -1,7 +1,8 @@
+import { ApiProperty } from "@nestjs/swagger"
+
 export class ExistingUserDto {
-    static id(id: any): Promise<import("../../visits/shemas/visits.schemas").Visit[]> {
-        throw new Error('Method not implemented.')
-    }
-    email: string
+    @ApiProperty()
+    login: string
+    @ApiProperty()
     password: string
 }

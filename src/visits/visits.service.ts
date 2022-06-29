@@ -18,9 +18,11 @@ export class VisitsService {
 
 
     private visits = []
-
+    
     async getAll(): Promise<Visit[]> {
-        return this.visitModel.find().exec()
+        return this.visitModel.find(
+
+        ).exec()
     }
 
 
@@ -30,10 +32,10 @@ export class VisitsService {
 
 
     async create(visitdto: CreateVisitDto): Promise<Visit> {
-     const newVisit = new this.visitModel(visitdto)
-     return newVisit.save()
+        const newVisit = new this.visitModel(visitdto)
+        return newVisit.save()
     }
-    
+
 
     async remove(id: string): Promise<Visit> {
         return this.visitModel.findByIdAndRemove(id)
@@ -41,6 +43,6 @@ export class VisitsService {
 
 
     async update(id: string, visitdto: UpdateVisitDto): Promise<Visit> {
-        return this.visitModel.findByIdAndUpdate(id, visitdto, {new: true})
+        return this.visitModel.findByIdAndUpdate(id, visitdto, { new: true })
     }
 }
