@@ -6,38 +6,36 @@ import { UserDocument } from './user.schema';
 
 @Injectable()
 export class UserService {
-    FindByLogin(login: string) {
-        throw new Error('Method not implemented.');
-    }
+    constructor(@InjectModel('User') private readonly userModel: Model<UserDocument>) { }
+
+
     findOne(email: string) {
         throw new Error('Method not implemented.');
     }
-    constructor(@InjectModel('User') private readonly userModel: Model<UserDocument>) {}
-
-    _getUserDetails(username: UserDocument): UserDetails {
-        return {
-            id: username._id,
-            login: username.login,
-            email: username.email,
-        }
-    }
 
     async findByEmail(email: string): Promise<UserDocument | null> {
-        return this.userModel.findOne({email}).exec()
+        return this.userModel.findOne({ email }).exec()
     }
 
     async findByLogin(login: string): Promise<UserDocument | null> {
-        return this.userModel.findOne({login}).exec()
+        return this.userModel.findOne({ login }).exec()
     }
 
-    async findById(id: string): Promise<UserDetails | null> {
+
+    // TODO: Fix returning type
+    async findById(id: string) {
         const user = await this.userModel.findById(id).exec()
         if (!user) return null
-        return this._getUserDetails(user)
+
+        const { _id, login, email } = user
+
+        return { _id, login, email }
     }
 
+
+    // TODO: Why object is not DTO
     async create(email: string, login: string, hashedPassword: string): Promise<UserDocument> {
-        const newUser = new this.userModel({email, login, password: hashedPassword})
+        const newUser = new this.userModel({ email, login, password: hashedPassword })
         return newUser.save()
     }
 }

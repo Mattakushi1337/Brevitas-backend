@@ -32,6 +32,8 @@ export class AuthService {
 
         const newUser = await this.UserService.create(email, login, hashedPassword)
         
+
+        // TODO: Fix as in user service
         return this.UserService._getUserDetails(newUser)
     }
 
@@ -53,6 +55,7 @@ export class AuthService {
             throw new HttpException('Uncorrect password', HttpStatus.FORBIDDEN);
         }
 
+        // TODO: Fix as in user service
         return this.UserService._getUserDetails(user)
     }
     async login(existingUser: ExistingUserDto): Promise<{token: string} | null> {

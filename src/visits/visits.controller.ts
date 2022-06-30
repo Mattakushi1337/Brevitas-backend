@@ -30,9 +30,6 @@ export class VisitsController {
     @ApiResponse({ status: 200, description: 'Получение одной визитки по ID'})
     @ApiResponse({ status: 404, description: 'Не найдено'})
     getOne(@Param('id') id: string): Promise<Visit> {
-        if (id != 'id') {
-            throw new HttpException('Not found', HttpStatus.NOT_FOUND);
-        }
         return this.VisitsService.getById(id) // ищем определённую визитку
 
     }
@@ -51,9 +48,6 @@ export class VisitsController {
     @ApiResponse({ status: 200, description: 'Удаление визитки по ID'})
     @ApiResponse({ status: 404, description: 'Не найдено'})
     remove(@Param('id') id: string): Promise<Visit> {
-        if (id != 'id') {
-            throw new HttpException('Not found', HttpStatus.NOT_FOUND);
-        }
         return this.VisitsService.remove(id) // удаляем
     }
 
@@ -63,9 +57,6 @@ export class VisitsController {
     @ApiResponse({ status: 200, description: 'Изменение визитки по ID'})
     @ApiResponse({ status: 404, description: 'Не найдено'})
     update(@Body() updateVisitDto: UpdateVisitDto, @Param('id') id: string): Promise<Visit> {
-        if (id != 'id') {
-            throw new HttpException('Not found', HttpStatus.NOT_FOUND);
-        }
         return this.VisitsService.update(id, updateVisitDto) // обновляем
     }
 

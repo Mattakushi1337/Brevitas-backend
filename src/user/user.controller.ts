@@ -9,9 +9,12 @@ export class UserController {
 
     constructor(private UserService: UserService) {}
 
+
+
+    // TODO: Fix returning type
     @Get(':id')
     @ApiResponse({ status: 200, description: 'Получение пользователя по ID'})
-    getUser(@Param('id') id: string): Promise<UserDetails | null> {
+    getUser(@Param('id') id: string) {
         return this.UserService.findById(id) 
     }
 }
