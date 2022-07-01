@@ -5,15 +5,9 @@ import { VisitsController } from "./visits.controller";
 import { VisitsService } from "./visits.service";
 
 @Module({ 
+    imports: [MongooseModule.forFeature([{name: Visit.name, schema: VisitSchema}])],
     providers: [VisitsService], 
     controllers: [VisitsController],
-    imports: [
-        MongooseModule.forFeature([
-            {name: Visit.name, schema: VisitSchema}
-        ])
-    ]
 })
 
-export class VisitModule {
-
-}
+export class VisitModule {}

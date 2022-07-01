@@ -12,8 +12,7 @@ import { SwaggerModule, DocumentBuilder, ApiBody, ApiTags, ApiResponse } from '@
 export class VisitsController {
 
 
-    constructor(private readonly VisitsService: VisitsService) {
-    }
+    constructor(private readonly VisitsService: VisitsService) {}
 
 
 

@@ -1,16 +1,31 @@
 import { ApiProperty } from "@nestjs/swagger"
+import { IsEmail, IsNotEmpty, IsNumber, IsString, IsUrl } from "class-validator"
 
 export class UpdateVisitDto {
     @ApiProperty()
-    readonly name: string
+    @IsString()
+    @IsNotEmpty()
+    public name: string
     @ApiProperty()
-    readonly surname: string
+    @IsString()
+    @IsNotEmpty()
+    public surname: string
     @ApiProperty()
-    readonly description: string
+    @IsString()
+    @IsNotEmpty()
+    public description: string
     @ApiProperty()
-    readonly mail: string
+    @IsString()
+    @IsNotEmpty()
+    @IsEmail()
+    public mail: string
     @ApiProperty()
-    readonly link: string
+    @IsString()
+    @IsNotEmpty()
+    @IsUrl()
+    public link: string
     @ApiProperty()
-    readonly phone: number
+    @IsNumber()
+    @IsNotEmpty()
+    public phone: number
 }
