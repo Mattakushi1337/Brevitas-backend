@@ -17,7 +17,7 @@ async function bootstrap() {
   app.use(cookieParser())
   app.enableCors({
     credentials: true,
-    origin: [/http:\/\/localhost:[0-9]{1,6}$/],
+    origin: [/http:\/\/localhost:[0-9]{1,6}$/]
   })
   await app.listen(3000);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
