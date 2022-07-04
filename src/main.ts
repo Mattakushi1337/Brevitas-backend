@@ -15,7 +15,10 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
   app.use(cookieParser())
-  app.enableCors();
+  app.enableCors({
+    credentials: true,
+    origin: [/http:\/\/localhost:[0-9]{1,6}$/],
+  })
   await app.listen(3000);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 }

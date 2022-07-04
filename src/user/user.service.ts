@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { NewUserDto } from './dtos/new-user.dto';
-import { UserDetails } from './user-details.interface';
 import { UserDocument } from './user.schema';
 
 @Injectable()
@@ -12,11 +11,11 @@ export class UserService {
     async getByEmail(email: string) {
         const user = await this.userModel.findOne({ email });
         if (user) {
-          return  user;
+            return user;
         }
         throw new HttpException('User with this email does not exist', HttpStatus.NOT_FOUND);
-      }
-      
+    }
+
     async findByEmail(email: string): Promise<UserDocument | null> {
         return await this.userModel.findOne({ email }).exec()
     }
@@ -33,12 +32,12 @@ export class UserService {
 
         const { _id, login, email } = user
 
-        return  { _id, login, email }
+        return { _id, login, email }
     }
 
     async getById(id: number) {
         const user = await this.userModel.findOne({ id })
-        
+
         if (user) {
             return user
         }

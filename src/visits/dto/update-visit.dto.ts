@@ -5,27 +5,27 @@ export class UpdateVisitDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    public name: string
+    readonly name: string
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    public surname: string
+    readonly surname: string
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    public description: string
+    readonly description: string
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @IsEmail()
-    public mail: string
+    readonly mail: string
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @IsUrl()
-    public link: string
+    readonly link: string
     @ApiProperty()
     @IsNumber()
     @IsNotEmpty()
-    public phone: number
+    readonly phone: number
 }

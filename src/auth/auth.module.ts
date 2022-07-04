@@ -11,7 +11,6 @@ import { LocalStrategy } from './guards/local.strategy';
 
 
 @Module({
-  //imports: [UserModule, JwtModule.registerAsync({useFactory: () => ({secret: 'secret', signOptions: {expiresIn: '3600s'}})})],
   imports: [UserModule,
     PassportModule,
     ConfigModule,
@@ -29,4 +28,4 @@ import { LocalStrategy } from './guards/local.strategy';
   controllers: [AuthController],
   providers: [AuthService, JwtGuard, JwtStrategy, LocalStrategy]
 })
-export class AuthModule {}
+export class AuthModule { }

@@ -11,17 +11,7 @@ import { Visit, VisitDocument } from "./shemas/visits.schemas";
 export class VisitsService {
 
 
-    constructor(
-        @InjectModel(Visit.name) private visitModel: Model<VisitDocument>,
-        // private visitService: VisitsService
-    ) {
-    }
-
-    async findById(id: string): Promise<VisitDocument> {
-        return await this.visitModel.findOne({ id }).exec()
-    }
-
-
+    constructor(@InjectModel(Visit.name) private visitModel: Model<VisitDocument>) { }
 
     async getAll(): Promise<Visit[]> {
         return await this.visitModel.find().exec()
@@ -29,8 +19,6 @@ export class VisitsService {
 
 
     async getById(id: string): Promise<Visit> {
-
-
         try {
             const isVisitExist = await this.visitModel.findById(id).exec()
 
@@ -41,8 +29,6 @@ export class VisitsService {
         } catch (error) {
             throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
         }
-
-
     }
 
 
@@ -79,7 +65,7 @@ export class VisitsService {
             throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
 
         }
-        
+
     }
 }
 

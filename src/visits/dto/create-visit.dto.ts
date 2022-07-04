@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger"
-import { IsEmail, IsMobilePhone, IsNotEmpty, IsNumber, IsPhoneNumber, IsString, IsUrl,} from "class-validator"
+import { IsEmail, IsNotEmpty, IsNumber, IsString, IsUrl, } from "class-validator"
 
 export class CreateVisitDto {
     @ApiProperty()

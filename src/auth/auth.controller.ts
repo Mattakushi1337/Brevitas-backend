@@ -1,9 +1,8 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
-import { Request, Response } from 'express';
-import { SwaggerModule, DocumentBuilder, ApiBody, ApiTags, ApiResponse } from '@nestjs/swagger';
+import { Body, Controller, HttpCode, HttpStatus, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Response } from 'express';
+import { ApiBody, ApiTags, ApiResponse } from '@nestjs/swagger';
 import { ExistingUserDto } from 'src/user/dtos/existing-user.dto';
 import { NewUserDto } from 'src/user/dtos/new-user.dto';
-import { UserDetails } from 'src/user/user-details.interface';
 import { AuthService } from './auth.service';
 import { JwtService } from '@nestjs/jwt';
 import { LocalAuthenticationGuard } from './guards/localAuthentication.guard';
@@ -33,21 +32,22 @@ export class AuthController {
     @ApiResponse({ status: 200, description: 'Авторизация' })
     async login(
         @Req() request: RequestWithUser,
-        @Res({ passthrough: true }
-        ) response: Response) {
-            
+        @Res({ passthrough: true })
+         response: Response) {
+
         const { user } = request;
-        
-        const cookie = await this.authService.getCookieWithJwtToken(user._id);
+
+        const cookie = this.authService.getCookieWithJwtToken(user._id);
         response.setHeader('Set-Cookie', cookie);
         user.password = undefined;
-        return user;
+        return await user;
     }
 
     @UseGuards(JwtGuard)
     @Post('logout')
+    @ApiResponse({ status: 200, description: 'Выход' })
     async logOut(@Req() request: RequestWithUser, @Res() response: Response) {
-    response.setHeader('Set-Cookie', this.authService.getCookieForLogOut());
-    return response.sendStatus(200);
-  }
+        response.setHeader('Set-Cookie', this.authService.getCookieForLogOut());
+        return response.sendStatus(200);
+    }
 }
