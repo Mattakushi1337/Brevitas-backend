@@ -76,7 +76,6 @@ export class AuthService {
     public async getAuthenticatedUser(login: string, hashedPassword: string) {
         try {
             const user = await this.UserService.findByLogin(login);
-            console.log(user);
 
             const isPasswordMatching = await bcrypt.compare(
                 hashedPassword,

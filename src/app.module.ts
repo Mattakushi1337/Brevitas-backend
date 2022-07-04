@@ -11,8 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
-  imports: [VisitModule, MongooseModule.forRoot(`mongodb://localhost:27017/visits`,{ useNewUrlParser: true } ), UserModule, AuthModule,
-   ConfigModule.forRoot({
+  imports: [VisitModule, MongooseModule.forRoot(`mongodb://localhost:27017/visits`,{ useNewUrlParser: true } ), UserModule, AuthModule, ConfigModule.forRoot({
     validationSchema: Joi.object({
       JWT_SECRET: Joi.string().required(),
       JWT_EXPIRATION_TIME: Joi.string().required(),
@@ -22,3 +21,4 @@ import { ConfigModule } from '@nestjs/config';
   providers: [AppService],
 })
 export class AppModule {}
+//MongooseModule.forRoot(`mongodb://localhost:27017/visits`,{ useNewUrlParser: true } )

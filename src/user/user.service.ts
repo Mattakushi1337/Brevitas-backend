@@ -12,7 +12,7 @@ export class UserService {
     async getByEmail(email: string) {
         const user = await this.userModel.findOne({ email });
         if (user) {
-          return await user;
+          return  user;
         }
         throw new HttpException('User with this email does not exist', HttpStatus.NOT_FOUND);
       }
@@ -33,7 +33,7 @@ export class UserService {
 
         const { _id, login, email } = user
 
-        return await { _id, login, email }
+        return  { _id, login, email }
     }
 
     async getById(id: number) {

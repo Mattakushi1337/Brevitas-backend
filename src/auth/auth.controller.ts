@@ -35,8 +35,6 @@ export class AuthController {
         @Req() request: RequestWithUser,
         @Res({ passthrough: true }
         ) response: Response) {
-
-            console.log(request);
             
         const { user } = request;
         
