@@ -58,8 +58,9 @@ export class VisitsService {
             const isVisitExist = await this.visitModel.findById(id).exec()
 
             if (!isVisitExist) {
-                return await this.visitModel.findByIdAndRemove(id)
+                throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
             }
+            return await this.visitModel.findByIdAndRemove(id)
         } catch (error) {
             throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
 
@@ -71,8 +72,9 @@ export class VisitsService {
             const isVisitExist = await this.visitModel.findById(id).exec()
 
             if (!isVisitExist) {
-                return await this.visitModel.findByIdAndUpdate(id, visitdto, { new: true })
+                throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
             }
+            return await this.visitModel.findByIdAndUpdate(id, visitdto, { new: true })
         } catch (error) {
             throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
 
