@@ -50,7 +50,7 @@ export class AuthController {
     }
 
     @UseGuards(JwtGuard)
-    @Get('test')
+    @Get('check')
     @ApiOperation({ summary: 'Check user is authenticated' })
     isOnline(@Req() request: RequestWithUser) {
 
