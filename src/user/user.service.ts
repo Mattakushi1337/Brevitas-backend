@@ -25,28 +25,34 @@ export class UserService {
     }
 
 
-    // TODO: Fix returning type (Done)
     async findById(id: string) {
         const user = await this.userModel.findById(id).exec()
-        if (!user) return null
+        try {
+            if (!user) {
+                throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
+            }
 
-        const { _id, login, email } = user
+            return user
+        }
+        catch (error) {
+            throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
 
-        return { _id, login, email }
+        }
+
     }
 
-    async getById(id: number) {
-        const user = await this.userModel.findOne({ id })
-
+    async getById(id: string) {
+        const user = await this.userModel.findOne({_id:id})
         if (user) {
             return user
         }
         throw new HttpException('User with this ID does not exist', HttpStatus.NOT_FOUND)
     }
 
-    // TODO: Why object is not DTO (Done)
     async create(newUserDto: NewUserDto): Promise<UserDocument> {
         const newUser = new this.userModel(newUserDto)
         return await newUser.save()
     }
+
+    
 }

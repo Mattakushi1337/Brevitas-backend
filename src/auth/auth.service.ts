@@ -5,6 +5,7 @@ import { NewUserDto } from 'src/user/dtos/new-user.dto';
 import { UserService } from 'src/user/user.service';
 import { ConfigService } from '@nestjs/config';
 
+
 @Injectable()
 export class AuthService {
     constructor(private UserService: UserService, private jwtService: JwtService, private readonly configService: ConfigService) { }
@@ -20,11 +21,11 @@ export class AuthService {
 
 
         if (existingUser) {
-            throw new HttpException('Email Taken!', HttpStatus.FORBIDDEN);
+            throw new HttpException('Email Taken!', HttpStatus.FORBIDDEN)
         }
 
         if (loginUser) {
-            throw new HttpException('Login Taken!', HttpStatus.FORBIDDEN);
+            throw new HttpException('Login Taken!', HttpStatus.FORBIDDEN)
         }
 
         const hashedPassword = await this.hashPassword(password)
@@ -37,33 +38,35 @@ export class AuthService {
 
 
 
-    public getCookieWithJwtToken(userId: number) {
-        const payload: TokenPayload = { userId };
-        const token = this.jwtService.sign(payload);
-        return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_EXPIRATION_TIME')}`;
+    public getCookieWithJwtToken(userId: string) {
+        const payload: TokenPayload = { userId }
+        
+        const token = this.jwtService.sign(payload)
+        return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_EXPIRATION_TIME')}`
     }
 
 
     public async getAuthenticatedUser(login: string, hashedPassword: string) {
         try {
-            const user = await this.UserService.findByLogin(login);
+            const user = await this.UserService.findByLogin(login)
 
             const isPasswordMatching = await bcrypt.compare(
                 hashedPassword,
                 user.password
-            );
+            )
 
             if (!isPasswordMatching) {
-                throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
+                throw new HttpException('Wrong login or password', HttpStatus.BAD_REQUEST)
             }
-            user.password = undefined;
-            return user;
+            user.password = undefined
+            return user
         } catch (error) {
-            throw new HttpException('Wrong login or password', HttpStatus.BAD_REQUEST);
+            throw new HttpException('Wrong login or password', HttpStatus.BAD_REQUEST)
         }
     }
 
     public getCookieForLogOut() {
-        return `Authentication=; HttpOnly; Path=/; Max-Age=0`;
+        return `Authentication=; HttpOnly; Path=/; Max-Age=0`
     }
+
 }
