@@ -16,6 +16,7 @@ export class VisitsController {
     constructor(private readonly VisitsService: VisitsService) { }
 
 
+    // TODO: Не асинхронна, нет возвращаемых типов
     @Get()
     @UseGuards(JwtGuard)
     @ApiResponse({ status: 200, description: 'Получение всех визиток' })
@@ -23,7 +24,7 @@ export class VisitsController {
         return this.VisitsService.getAll() // Получаем все визитки
     }
 
-
+    // TODO: Не асинхронна
     @Get(':id')
     @UseGuards(JwtGuard)
     @ApiResponse({ status: 200, description: 'Получение одной визитки по ID' })
@@ -33,7 +34,7 @@ export class VisitsController {
 
     }
 
-
+    // TODO: Нет возвращаемых типов
     @Post()
     @UseGuards(JwtGuard)
     @ApiBody({ type: CreateVisitDto })
