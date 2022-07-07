@@ -1,9 +1,12 @@
 import { Request } from 'express';
-import { User } from 'src/user/user.schema';
 
 interface RequestWithUser extends Request {
-
-  user: any;
+  user: {
+    _id: string
+    login: string
+    email: string
+    password: string
+  }
 }
 
 export default RequestWithUser;

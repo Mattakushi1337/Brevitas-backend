@@ -8,8 +8,7 @@ export class UserController {
 
     constructor(private UserService: UserService) { }
 
-
-    @Get(':id')
+    @Get()
     @ApiResponse({ status: 200, description: 'Получение пользователя по ID' })
     getUser(@Param('id') id: string) {
         return this.UserService.findById(id)    

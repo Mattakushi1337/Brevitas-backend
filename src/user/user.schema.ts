@@ -1,10 +1,13 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Transform, Type } from "class-transformer";
+import { Document, ObjectId } from "mongoose";
 
 export type UserDocument = User & Document;
 
 @Schema()
 export class User {
+    @Transform(({ value }) => value.toString())
+    _id: string;
     @Prop({ required: true, unique: true })
     email: string;
     @Prop({ unique: true })

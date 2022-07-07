@@ -31,10 +31,7 @@ export class AuthController {
     @UseGuards(LocalAuthenticationGuard)
     @ApiResponse({ status: 200, description: 'Авторизация' })
     async login(@Req() request: RequestWithUser, @Res() response: Response) {
-        
         const { user } = request
-        
-      
         const cookie = this.authService.getCookieWithJwtToken(user._id)
         response.setHeader('Set-Cookie', cookie)
         user.password = undefined
@@ -53,11 +50,8 @@ export class AuthController {
     @Get('check')
     @ApiOperation({ summary: 'Check user is authenticated' })
     isOnline(@Req() request: RequestWithUser) {
-
         const user = request.user
-
         user.password = undefined
-
         return user
     }
 

@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+import { User } from "src/user/user.schema";
 import { CreateVisitDto } from "./dto/create-visit.dto";
 import { UpdateVisitDto } from "./dto/update-visit.dto";
 import { Visit, VisitDocument } from "./shemas/visits.schemas";
@@ -14,7 +15,7 @@ export class VisitsService {
     constructor(@InjectModel(Visit.name) private visitModel: Model<VisitDocument>) { }
 
     async getAll(): Promise<Visit[]> {
-        return await this.visitModel.find().exec()
+        return await this.visitModel.find().populate('user')
     }
 
 
@@ -32,8 +33,11 @@ export class VisitsService {
     }
 
 
-    async create(visitdto: CreateVisitDto): Promise<Visit> {
-        const newVisit = new this.visitModel(visitdto)
+    async create(visitdto: CreateVisitDto, user: User) {
+        const newVisit = new this.visitModel({
+            ...visitdto,
+            user,
+        })
         return await newVisit.save()
     }
 
