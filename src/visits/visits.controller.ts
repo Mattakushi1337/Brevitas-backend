@@ -16,39 +16,35 @@ export class VisitsController {
     constructor(private readonly VisitsService: VisitsService) { }
 
 
-    // TODO: Не асинхронна, нет возвращаемых типов
     @Get()
     @UseGuards(JwtGuard)
     @ApiResponse({ status: 200, description: 'Получение всех визиток' })
-    getAll() {
-        return this.VisitsService.getAll() // Получаем все визитки
+    async getAll(): Promise<Visit[]> {
+        return await this.VisitsService.getAll() // Получаем все визитки
     }
 
-    // TODO: Не асинхронна
     @Get(':id')
     @UseGuards(JwtGuard)
     @ApiResponse({ status: 200, description: 'Получение одной визитки по ID' })
     @ApiResponse({ status: 404, description: 'Не найдено' })
-    getOne(@Param('id') id: string): Promise<Visit> {
-        return this.VisitsService.getById(id) // ищем определённую визитку
-
+    async getOne(@Param('id') id: string): Promise<Visit> {
+        return await this.VisitsService.getById(id) // ищем определённую визитку
     }
 
-    // TODO: Нет возвращаемых типов
     @Post()
     @UseGuards(JwtGuard)
     @ApiBody({ type: CreateVisitDto })
     @ApiResponse({ status: 200, description: 'Создание визитки' })
-    create(@Body() createVisitDto: CreateVisitDto, @Req() req: RequestWithUser) {
-        return this.VisitsService.create(createVisitDto, req.user) // создаём
+    async create(@Body() createVisitDto: CreateVisitDto, @Req() req: RequestWithUser): Promise<Visit> {
+        return await this.VisitsService.create(createVisitDto, req.user) // создаём
     }
 
     @Delete(':id')
     @UseGuards(JwtGuard)
     @ApiResponse({ status: 200, description: 'Удаление визитки по ID' })
     @ApiResponse({ status: 404, description: 'Не найдено' })
-    remove(@Param('id') id: string): Promise<Visit> {
-        return this.VisitsService.remove(id) // удаляем
+    async remove(@Param('id') id: string): Promise<Visit> {
+        return await this.VisitsService.remove(id) // удаляем
     }
 
     @Put(':id')
@@ -56,8 +52,8 @@ export class VisitsController {
     @ApiBody({ type: UpdateVisitDto })
     @ApiResponse({ status: 200, description: 'Изменение визитки по ID' })
     @ApiResponse({ status: 404, description: 'Не найдено' })
-    update(@Body() updateVisitDto: UpdateVisitDto, @Param('id') id: string): Promise<Visit> {
-        return this.VisitsService.update(id, updateVisitDto) // обновляем
+    async update(@Body() updateVisitDto: UpdateVisitDto, @Param('id') id: string): Promise<Visit> {
+        return await this.VisitsService.update(id, updateVisitDto) // обновляем
     }
 
 

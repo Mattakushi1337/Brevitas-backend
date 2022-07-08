@@ -1,4 +1,5 @@
 import { Request } from 'express';
+import { ObjectId } from 'mongoose';
 
 interface RequestWithVisit extends Request {
     visit: {
@@ -9,7 +10,7 @@ interface RequestWithVisit extends Request {
         mail: string
         link: string
         phone: number
-        user : string
+        user : ObjectId
     }
 }
 export default RequestWithVisit;

@@ -27,17 +27,12 @@ export class UserService {
 
     async findById(id: string) {
         const user = await this.userModel.findById(id).exec()
-        try {
             if (!user) {
                 throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
             }
-
             return user
-        }
-        catch (error) {
-            throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
 
-        }
+        
 
     }
 

@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Transform, Type } from "class-transformer";
-import { Document, ObjectId } from "mongoose";
+import mongoose, { Document, ObjectId } from "mongoose";
+import { Visit } from "src/visits/shemas/visits.schemas";
 
 export type UserDocument = User & Document;
 
@@ -14,6 +15,9 @@ export class User {
     login: string;
     @Prop({ required: true })
     password: string;
+    // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Visit.name })
+    // @Type(() => User)
+    // visit: Visit;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

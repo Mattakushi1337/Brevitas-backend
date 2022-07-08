@@ -49,7 +49,7 @@ export class AuthController {
     @UseGuards(JwtGuard)
     @Get('check')
     @ApiOperation({ summary: 'Check user is authenticated' })
-    isOnline(@Req() request: RequestWithUser) {
+    async isOnline(@Req() request: RequestWithUser) {
         const user = request.user
         user.password = undefined
         return user

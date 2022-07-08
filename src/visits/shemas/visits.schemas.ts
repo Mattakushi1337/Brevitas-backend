@@ -9,25 +9,18 @@ export type VisitDocument = Visit & Document
 export class Visit {
     @Transform(({ value }) => value.toString())
     _id: ObjectId;
-
     @Prop()
     name: string
-
     @Prop()
     surname: string
-
     @Prop()
     description: string
-
     @Prop()
     mail: string
-
     @Prop()
     link: string
-
     @Prop()
     phone: number
-    
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
     @Type(() => User)
     user: User;
