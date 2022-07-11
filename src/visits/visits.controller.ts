@@ -48,6 +48,7 @@ export class VisitsController {
     }
 
     @Put(':id')
+    
     @UseGuards(JwtGuard)
     @ApiBody({ type: UpdateVisitDto })
     @ApiResponse({ status: 200, description: 'Изменение визитки по ID' })

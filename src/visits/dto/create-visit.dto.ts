@@ -28,4 +28,12 @@ export class CreateVisitDto {
     @IsNumber()
     @IsNotEmpty()
     readonly phone: number
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly backgroundColor: string
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly textColor: string
 }
