@@ -25,6 +25,8 @@ export class Visit {
     backgroundColor: string
     @Prop()
     textColor: string
+    @Prop()
+    linksColor: string
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
     @Type(() => User)
     user: User;

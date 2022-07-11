@@ -36,4 +36,8 @@ export class UpdateVisitDto {
     @IsString()
     @IsNotEmpty()
     readonly textColor: string
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly linksColor: string
 }

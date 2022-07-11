@@ -1,6 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { Request } from 'express';
 import { Model } from 'mongoose';
+import RequestWithUser from 'src/auth/requestWithUser.interface';
 import { User, UserDocument } from 'src/user/user.schema';
 import { CreateVisitDto } from './dto/create-visit.dto';
 import { UpdateVisitDto } from './dto/update-visit.dto';
@@ -12,8 +14,10 @@ export class VisitsService {
     @InjectModel(Visit.name) private visitModel: Model<VisitDocument>,
     @InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
-  async getAll(): Promise<Visit[]> {
-    return await this.visitModel.find().populate('user')
+  async getAll(req: RequestWithUser): Promise<Visit[]> {
+    const result = await this.visitModel.find({user: req.user})
+    
+    return result
   }
 
   async getById(id: string): Promise<Visit> {

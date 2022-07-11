@@ -19,8 +19,9 @@ export class VisitsController {
     @Get()
     @UseGuards(JwtGuard)
     @ApiResponse({ status: 200, description: 'Получение всех визиток' })
-    async getAll(): Promise<Visit[]> {
-        return await this.VisitsService.getAll() // Получаем все визитки
+    async getAll(@Req() req): Promise<Visit[]> {
+        
+        return await this.VisitsService.getAll(req) // Получаем все визитки
     }
 
     @Get(':id')
