@@ -40,4 +40,12 @@ export class UpdateVisitDto {
     @IsString()
     @IsNotEmpty()
     readonly linksColor: string
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly linksPosition: string
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly textPosition: string
 }

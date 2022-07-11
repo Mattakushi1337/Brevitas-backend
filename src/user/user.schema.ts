@@ -15,9 +15,6 @@ export class User {
     login: string;
     @Prop({ required: true })
     password: string;
-    // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Visit.name })
-    // @Type(() => User)
-    // visit: Visit;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

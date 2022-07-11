@@ -10,7 +10,7 @@ interface RequestWithVisit extends Request {
         mail: string
         link: string
         phone: number
-        user : ObjectId
+        user: ObjectId
     }
 }
 export default RequestWithVisit;

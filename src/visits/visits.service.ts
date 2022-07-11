@@ -15,8 +15,7 @@ export class VisitsService {
     @InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
   async getAll(req: RequestWithUser): Promise<Visit[]> {
-    const result = await this.visitModel.find({user: req.user})
-    
+    const result = await this.visitModel.find({ user: req.user })
     return result
   }
 

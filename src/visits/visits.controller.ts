@@ -20,7 +20,6 @@ export class VisitsController {
     @UseGuards(JwtGuard)
     @ApiResponse({ status: 200, description: 'Получение всех визиток' })
     async getAll(@Req() req): Promise<Visit[]> {
-        
         return await this.VisitsService.getAll(req) // Получаем все визитки
     }
 
@@ -49,7 +48,6 @@ export class VisitsController {
     }
 
     @Put(':id')
-    
     @UseGuards(JwtGuard)
     @ApiBody({ type: UpdateVisitDto })
     @ApiResponse({ status: 200, description: 'Изменение визитки по ID' })
@@ -57,9 +55,6 @@ export class VisitsController {
     async update(@Body() updateVisitDto: UpdateVisitDto, @Param('id') id: string): Promise<Visit> {
         return await this.VisitsService.update(id, updateVisitDto) // обновляем
     }
-
-
-
 }
 
 

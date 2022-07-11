@@ -24,18 +24,6 @@ export class UserService {
         return await this.userModel.findOne({ login }).exec()
     }
 
-
-    async findById(id: string) {
-        const user = await this.userModel.findById(id).exec()
-            if (!user) {
-                throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
-            }
-            return user
-
-        
-
-    }
-
     async getById(id: string) {
         const user = await this.userModel.findOne({_id:id})
         if (user) {

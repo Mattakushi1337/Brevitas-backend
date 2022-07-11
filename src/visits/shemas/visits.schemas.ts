@@ -27,6 +27,10 @@ export class Visit {
     textColor: string
     @Prop()
     linksColor: string
+    @Prop()
+    linksPosition: string
+    @Prop()
+    textPosition: string
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
     @Type(() => User)
     user: User;
