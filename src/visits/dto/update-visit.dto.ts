@@ -43,9 +43,5 @@ export class UpdateVisitDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    readonly linksPosition: string
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
     readonly textPosition: string
 }

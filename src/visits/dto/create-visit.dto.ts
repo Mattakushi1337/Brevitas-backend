@@ -40,10 +40,7 @@ export class CreateVisitDto {
     @IsString()
     @IsNotEmpty()
     readonly linksColor: string
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    readonly linksPosition: string
+
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
