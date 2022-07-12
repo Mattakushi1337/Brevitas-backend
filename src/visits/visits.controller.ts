@@ -56,5 +56,3 @@ export class VisitsController {
         return await this.VisitsService.update(id, updateVisitDto) // обновляем
     }
 }
-
-

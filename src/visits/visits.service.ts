@@ -9,9 +9,7 @@ import { Visit, VisitDocument } from './shemas/visits.schemas';
 
 @Injectable()
 export class VisitsService {
-  constructor(
-    @InjectModel(Visit.name) private visitModel: Model<VisitDocument>,
-    @InjectModel(User.name) private userModel: Model<UserDocument>) { }
+  constructor(@InjectModel(Visit.name) private visitModel: Model<VisitDocument>) { }
 
   async getAll(req: RequestWithUser): Promise<Visit[]> {
     const result = await this.visitModel.find({ user: req.user })

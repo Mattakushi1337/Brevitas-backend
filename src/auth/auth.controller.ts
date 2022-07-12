@@ -54,7 +54,4 @@ export class AuthController {
         user.password = undefined
         return user
     }
-
-
-
 }

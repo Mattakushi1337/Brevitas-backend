@@ -35,7 +35,5 @@ export class UserService {
     async create(newUserDto: NewUserDto): Promise<UserDocument> {
         const newUser = new this.userModel(newUserDto)
         return await newUser.save()
-    }
-
-    
+    }   
 }
