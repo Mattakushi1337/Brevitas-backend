@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Request } from 'express';
 import { Model } from 'mongoose';
 import RequestWithUser from 'src/auth/requestWithUser.interface';
 import { User, UserDocument } from 'src/user/user.schema';
