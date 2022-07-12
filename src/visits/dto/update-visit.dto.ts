@@ -56,4 +56,12 @@ export class UpdateVisitDto {
     @IsNumber()
     @IsNotEmpty()
     readonly sizeConst: number
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly textJustify: string
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly contJustify: string
 }

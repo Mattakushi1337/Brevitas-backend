@@ -35,6 +35,10 @@ export class Visit {
     sizeText: number
     @Prop()
     sizeConst: number
+    @Prop()
+    textJustify: number
+    @Prop()
+    contJustify: number
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
     @Type(() => User)
     user: User;
