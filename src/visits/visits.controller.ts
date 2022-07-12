@@ -6,6 +6,7 @@ import { Visit } from './shemas/visits.schemas';
 import { VisitsService } from './visits.service';
 import { ApiBody, ApiTags, ApiResponse } from '@nestjs/swagger';
 import RequestWithUser from 'src/auth/requestWithUser.interface';
+import { VisitCreatorGuard } from 'src/auth/guards/visit-creator.guard';
 
 
 @ApiTags('Work with visits')
@@ -24,7 +25,7 @@ export class VisitsController {
     }
 
     @Get(':id')
-    @UseGuards(JwtGuard)
+    @UseGuards(JwtGuard, VisitCreatorGuard)
     @ApiResponse({ status: 200, description: 'Получение одной визитки по ID' })
     @ApiResponse({ status: 404, description: 'Не найдено' })
     async getOne(@Param('id') id: string): Promise<Visit> {
@@ -40,7 +41,7 @@ export class VisitsController {
     }
 
     @Delete(':id')
-    @UseGuards(JwtGuard)
+    @UseGuards(JwtGuard, VisitCreatorGuard)
     @ApiResponse({ status: 200, description: 'Удаление визитки по ID' })
     @ApiResponse({ status: 404, description: 'Не найдено' })
     async remove(@Param('id') id: string): Promise<Visit> {
@@ -48,7 +49,7 @@ export class VisitsController {
     }
 
     @Put(':id')
-    @UseGuards(JwtGuard)
+    @UseGuards(JwtGuard, VisitCreatorGuard)
     @ApiBody({ type: UpdateVisitDto })
     @ApiResponse({ status: 200, description: 'Изменение визитки по ID' })
     @ApiResponse({ status: 404, description: 'Не найдено' })
