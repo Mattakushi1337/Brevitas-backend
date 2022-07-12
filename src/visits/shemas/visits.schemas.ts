@@ -36,11 +36,11 @@ export class Visit {
     @Prop()
     sizeConst: number
     @Prop()
-    textJustify: number
+    textJustify: string
     @Prop()
-    contJustify: number
+    contJustify: string
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
     @Type(() => User)
-    user: User;
+    user: User
 }
 export const VisitSchema = SchemaFactory.createForClass(Visit)
