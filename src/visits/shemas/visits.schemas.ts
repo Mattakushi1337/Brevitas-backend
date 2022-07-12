@@ -5,6 +5,7 @@ import { User } from "src/user/user.schema";
 
 export type VisitDocument = Visit & Document
 
+// TODO: Объединить объекты по смыслу
 @Schema()
 export class Visit {
     @Transform(({ value }) => value.toString())
