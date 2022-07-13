@@ -29,7 +29,7 @@ export class CreateVisitDto {
     @IsUrl()
     readonly link: string
     @ApiProperty()
-    @IsNumber()
+    @IsString()
     @IsNotEmpty()
     readonly phone: number
     @ApiProperty()
