@@ -12,8 +12,12 @@ export class VisitsService {
   constructor(@InjectModel(Visit.name) private visitModel: Model<VisitDocument>) { }
 
   async getAll(req: RequestWithUser): Promise<Visit[]> {
-    const result = await this.visitModel.find({ user: req.user })
-    return result
+    try {
+      const result = await this.visitModel.find({ user: req.user })
+      return result
+    } catch (error) {
+      throw new HttpException('Not Found', HttpStatus.NOT_FOUND)
+    }
   }
 
   async getById(id: string): Promise<Visit> {

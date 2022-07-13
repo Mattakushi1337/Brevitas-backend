@@ -2,10 +2,14 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Transform, Type } from "class-transformer";
 import mongoose, { Document, ObjectId } from "mongoose";
 import { User } from "src/user/user.schema";
+import { Color } from "./color.schemas";
+import { Justify } from "./justify.schemas";
+import { Positions } from "./position.schemas";
+import { Sizes } from "./sizes.schemas";
 
 export type VisitDocument = Visit & Document
 
-// TODO: Объединить объекты по смыслу
+// TODO: Объединить объекты по смыслу (Done)
 @Schema()
 export class Visit {
     @Transform(({ value }) => value.toString())
@@ -23,23 +27,13 @@ export class Visit {
     @Prop()
     phone: number
     @Prop()
-    backgroundColor: string
+    color: Color
     @Prop()
-    textColor: string
+    positions: Positions
     @Prop()
-    linksColor: string
+    sizes: Sizes
     @Prop()
-    linksPosition: string
-    @Prop()
-    textPosition: string
-    @Prop()
-    sizeText: number
-    @Prop()
-    sizeConst: number
-    @Prop()
-    textJustify: string
-    @Prop()
-    contJustify: string
+    justify: Justify
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
     @Type(() => User)
     user: User
