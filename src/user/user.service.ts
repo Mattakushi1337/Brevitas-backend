@@ -25,7 +25,7 @@ export class UserService {
     }
 
     async getById(id: string) {
-        const user = await this.userModel.findOne({_id:id})
+        const user = await this.userModel.findOne({ _id: id })
         if (user) {
             return user
         }
@@ -35,5 +35,5 @@ export class UserService {
     async create(newUserDto: NewUserDto): Promise<UserDocument> {
         const newUser = new this.userModel(newUserDto)
         return await newUser.save()
-    }   
+    }
 }

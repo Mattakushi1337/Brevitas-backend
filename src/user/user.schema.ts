@@ -18,8 +18,8 @@ export class User {
     @Prop({
         enum: Role,
         default: Role.User,
-      })
-       role: Role;
-    }
+    })
+    role: Role;
+}
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -19,7 +19,7 @@ async function bootstrap() {
     credentials: true,
     origin: [/http:\/\/localhost:[0-9]{1,6}$/]
   })
-  await app.listen(3000);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  await app.listen(3000);
 }
 bootstrap();

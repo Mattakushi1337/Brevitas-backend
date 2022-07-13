@@ -8,10 +8,6 @@ import { JwtGuard } from './guards/jwt.guard';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './guards/jwt.strategy';
 import { LocalStrategy } from './guards/local.strategy';
-import { VisitCreatorGuard } from './guards/visit-creator.guard';
-import { VisitsService } from 'src/visits/visits.service';
-import { VisitsController } from 'src/visits/visits.controller';
-import { UserController } from 'src/user/user.controller';
 import { VisitModule } from 'src/visits/visit.module'
 
 @Module({
@@ -32,6 +28,6 @@ import { VisitModule } from 'src/visits/visit.module'
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtGuard, JwtStrategy, LocalStrategy],
-  exports:[AuthService]
+  exports: [AuthService]
 })
 export class AuthModule { }

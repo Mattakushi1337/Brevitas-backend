@@ -25,7 +25,7 @@ export class VisitCreatorGuard implements CanActivate {
         const userId = user._id
         const userChecked = await this.userService.getById(userId)
 
-        
+
         return userChecked._id.toString() === visitChecked.user._id.toString();
     }
 }

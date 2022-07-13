@@ -1,5 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { IsEmail, IsNotEmpty, IsNumber, IsString, IsUrl, } from "class-validator"
+import { Color } from "../shemas/color.schemas"
+import { Justify } from "../shemas/justify.schemas"
+import { Positions } from "../shemas/position.schemas"
+import { Sizes } from "../shemas/sizes.schemas"
 
 export class CreateVisitDto {
     @ApiProperty()
@@ -29,39 +33,15 @@ export class CreateVisitDto {
     @IsNotEmpty()
     readonly phone: number
     @ApiProperty()
-    @IsString()
     @IsNotEmpty()
-    readonly backgroundColor: string
+    readonly color: Color
     @ApiProperty()
-    @IsString()
     @IsNotEmpty()
-    readonly textColor: string
+    readonly positions: Positions
     @ApiProperty()
-    @IsString()
     @IsNotEmpty()
-    readonly linksColor: string
+    readonly sizes: Sizes
     @ApiProperty()
-    @IsString()
     @IsNotEmpty()
-    readonly linksPosition: string
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    readonly textPosition: string
-    @ApiProperty()
-    @IsNumber()
-    @IsNotEmpty()
-    readonly sizeText: number
-    @ApiProperty()
-    @IsNumber()
-    @IsNotEmpty()
-    readonly sizeConst: number
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    readonly textJustify: string
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    readonly contJustify: string
+    readonly justify: Justify
 }
