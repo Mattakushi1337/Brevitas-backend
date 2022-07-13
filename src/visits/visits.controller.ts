@@ -7,6 +7,8 @@ import { VisitsService } from './visits.service';
 import { ApiBody, ApiTags, ApiResponse } from '@nestjs/swagger';
 import RequestWithUser from 'src/auth/requestWithUser.interface';
 import { VisitCreatorGuard } from 'src/auth/guards/visit-creator.guard';
+import { AppController } from 'src/app.controller';
+import { UrlGeneratorService } from 'nestjs-url-generator';
 
 
 @ApiTags('Work with visits')
@@ -14,7 +16,7 @@ import { VisitCreatorGuard } from 'src/auth/guards/visit-creator.guard';
 export class VisitsController {
 
 
-    constructor(private readonly VisitsService: VisitsService) { }
+    constructor(private readonly VisitsService: VisitsService, private readonly urlGeneratorService: UrlGeneratorService) { }
 
 
     @Get()
@@ -56,4 +58,6 @@ export class VisitsController {
     async update(@Body() updateVisitDto: UpdateVisitDto, @Param('id') id: string): Promise<Visit> {
         return await this.VisitsService.update(id, updateVisitDto) // обновляем
     }
+
+
 }

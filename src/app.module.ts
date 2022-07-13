@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from 'joi';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UrlGeneratorModule } from 'nestjs-url-generator';
 
 
 
@@ -34,6 +35,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
       inject: [ConfigService],
     }),
+    UrlGeneratorModule.forRoot({
+      secret: 'secret', // optional, required only for signed URL
+      appUrl: 'https://localhost:3000',
+    })
   ],
   controllers: [AppController],
   providers: [AppService],
