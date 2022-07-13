@@ -9,7 +9,6 @@ import { Sizes } from "./sizes.schemas";
 
 export type VisitDocument = Visit & Document
 
-// TODO: Объединить объекты по смыслу (Done)
 @Schema()
 export class Visit {
     @Transform(({ value }) => value.toString())
