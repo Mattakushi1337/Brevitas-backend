@@ -29,9 +29,8 @@ export class CreateVisitDto {
     @IsUrl()
     readonly link: string
     @ApiProperty()
-    @IsString()
     @IsNotEmpty()
-    readonly phone: number
+    readonly phone: string
     @ApiProperty()
     @IsNotEmpty()
     readonly color: Color
