@@ -8,14 +8,6 @@ import { UserDocument } from './user.schema';
 export class UserService {
     constructor(@InjectModel('User') private readonly userModel: Model<UserDocument>) { }
 
-    async getByEmail(email: string) {
-        const user = await this.userModel.findOne({ email });
-        if (user) {
-            return user;
-        }
-        throw new HttpException('User with this email does not exist', HttpStatus.NOT_FOUND);
-    }
-
     async findByEmail(email: string): Promise<UserDocument | null> {
         return await this.userModel.findOne({ email }).exec()
     }
